@@ -1,13 +1,32 @@
 function auth(){
-	var login = document.getElementById('nickname');
-	var password = document.getElementById('password');
-	var xmlhttp = getXmlHttp(); // Создаём объект XMLHTTP
-    xmlhttp.open('POST', 'SERVER', true); // Открываем асинхронное соединение
+	
+	var login = document.getElementById('nickname').value;
+	var password = document.getElementById('password').value;;
+	var xmlhttp = get_XMLHTTP(); // Создаём объект XMLHTTP
+    xmlhttp.open('POST', 'http://localhost:8080/auth/login', true); // Открываем асинхронное соединение
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Отправляем кодировку
-    xmlhttp.send("login=" + encodeURIComponent(login) + "&password=" + encodeURIComponent(password); // Отправляем POST-запрос
+	xmlhttp.send("email=" + encodeURIComponent(login) + "&password=" + encodeURIComponent(password));
     xmlhttp.onreadystatechange = function() { // Ждём ответа от сервера
-      if (xmlhttp.readyState == 4) { // Ответ пришёл
-       //обработка ответа
+      if (xmlhttp.status == 404) { // Ответ пришёл
+        window.location.href = "./html/profile/profile.html";
       }
     };
 }
+function get_XMLHTTP() {
+           var x = false;
+           try {
+              x = new XMLHttpRequest();
+           }catch(e) {
+             try {
+                x = new ActiveXObject("Microsoft.XMLHTTP");
+             }catch(ex) {
+                try {
+                    req = new ActiveXObject("Msxml2.XMLHTTP");
+                }
+                catch(e1) {
+                    x = false;
+                }
+             }
+          }
+          return x;
+        }
