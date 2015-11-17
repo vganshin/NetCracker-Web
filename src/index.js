@@ -11,11 +11,11 @@ import { Route } from 'react-router';
 import { Provider } from 'react-redux';
 import { createHistory } from 'history';
 
-import App from './containers'
+import App from 'containers'
 
-import { NotFound, Login } from './components'
+import { NotFound, Login } from 'components'
 
-import reducer from './reducers'
+import reducer from 'reducers'
 
 const store = compose(
   applyMiddleware(thunk),
