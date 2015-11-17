@@ -1,38 +1,28 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk'
-import {
-  ReduxRouter,
-  reduxReactRouter
-} from 'redux-router';
-
-import { Route } from 'react-router';
+import { ReduxRouter, reduxReactRouter } from 'redux-router';
 import { Provider } from 'react-redux';
 import { createHistory } from 'history';
-
-import App from 'containers'
-
-import { NotFound, Login } from 'components'
-
+import createLogger from 'redux-logger';
+import routes from 'routes'
 import reducer from 'reducers'
 
+const logger = createLogger();
+
 const store = compose(
-  applyMiddleware(thunk),
+  applyMiddleware(thunk, logger),
   reduxReactRouter({ createHistory })
 )(createStore)(reducer);
 
-class Root extends Component {
+class Root extends React.Component {
   render() {
     return (
       <div>
         <Provider store={store}>
           <ReduxRouter>
-            <Route path="/" component={App}>
-              <Route path="auth/login" component={Login}>
-              </Route>
-              <Route path="*" component={NotFound}/>
-            </Route>
+            {routes}
           </ReduxRouter>
         </Provider>
       </div>
