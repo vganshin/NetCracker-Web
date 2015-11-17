@@ -1,59 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk'
 import {
   ReduxRouter,
-  routerStateReducer,
-  reduxReactRouter,
-  pushState
+  reduxReactRouter
 } from 'redux-router';
 
-import { Route, Link } from 'react-router';
-import { Provider, connect } from 'react-redux';
-import { devTools } from 'redux-devtools';
-import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
+import { Route } from 'react-router';
+import { Provider } from 'react-redux';
 import { createHistory } from 'history';
 
-import { App } from './containers'
+import App from './containers'
+
+import { NotFound, Login } from './components'
 
 import reducer from './reducers'
 
 const store = compose(
   applyMiddleware(thunk),
-  reduxReactRouter({ createHistory }),
-  devTools()
+  reduxReactRouter({ createHistory })
 )(createStore)(reducer);
-
-
-class Parent extends Component {
-  static propTypes = {
-    children: PropTypes.node
-  }
-
-  render() {
-    return (
-      <div>
-        <h2>Parent</h2>
-        {this.props.children}
-      </div>
-    );
-  }
-}
-
-class Child extends Component {
-  render() {
-    const { params: { id }} = this.props;
-
-    return (
-      <div>
-        <h2>Child</h2>
-        {id && <p>{id}</p>}
-      </div>
-    );
-  }
-}
-
 
 class Root extends Component {
   render() {
@@ -62,16 +29,12 @@ class Root extends Component {
         <Provider store={store}>
           <ReduxRouter>
             <Route path="/" component={App}>
-              <Route path="parent" component={Parent}>
-                <Route path="child" component={Child} />
-                <Route path="child/:id" component={Child} />
+              <Route path="auth/login" component={Login}>
               </Route>
+              <Route path="*" component={NotFound}/>
             </Route>
           </ReduxRouter>
         </Provider>
-        <DebugPanel top right bottom>
-          <DevTools store={store} monitor={LogMonitor} />
-        </DebugPanel>
       </div>
     );
   }
