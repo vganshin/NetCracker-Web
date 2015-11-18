@@ -9,10 +9,8 @@ import createLogger from 'redux-logger';
 import routes from 'routes'
 import reducer from 'reducers'
 
-const logger = createLogger();
-
 const store = compose(
-  applyMiddleware(thunk, logger),
+  applyMiddleware(thunk, createLogger()),
   reduxReactRouter({ createHistory })
 )(createStore)(reducer);
 
@@ -31,3 +29,9 @@ class Root extends React.Component {
 }
 
 ReactDOM.render(<Root />, document.getElementById('react-app'));
+
+import * as actions from 'actions'
+import api from 'api'
+window.store = store;
+window.actions = actions;
+window.api = api

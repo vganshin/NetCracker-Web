@@ -15,6 +15,7 @@
     "babel-loader": "^5.1.2",
     "babel-plugin-react-transform": "^1.1.1",
     "express": "^4.13.3",
+    "express-http-proxy": "^0.6.0",
     "history": "^1.13.1",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
