@@ -1,19 +1,16 @@
+var path = require('path');
+
 module.exports = {
-    entry: "./src/entry.js",
+    entry: "./src/index.js",
     output: {
-        path: __dirname,
-        filename: "js/bundle.js"
+        path: path.join(__dirname, 'static/js'),
+        filename: "bundle.js"
     },
     module: {
-	  loaders: [
-	    {
-	      test: /\.js?$/,
-	      include: /(src)/,
-	      loader: 'babel',
-	      query: {
-	        presets: ['es2015', 'react']
-	      }
-	    }
-  	]
-}
+    loaders: [{
+      test: /\.js$/,
+      loaders: ['babel'],
+      include: path.join(__dirname, 'src')
+    }]
+  }
 };
