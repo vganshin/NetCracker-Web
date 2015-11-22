@@ -20,9 +20,3 @@ class Root extends React.Component {
 }
 
 ReactDOM.render(<Root />, document.getElementById('react-app'));
-
-import * as actions from 'actions'
-import api from 'api'
-window.store = store;
-window.actions = actions;
-window.api = api
