@@ -1,0 +1,33 @@
+.token-component {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  border-bottom: 1px solid;
+}
+
+.token-component__right {
+  font-size: 2em;
+
+}
+
+.token-component__studio {
+  color: gray;
+  font-size: 0.5em;
+}
+
+.token-component__left {
+  display: flex;
+}
+
+.token-component__button {
+  margin: auto;
+  cursor: pointer;
+}
+
+.token-component__subscribed {
+  background: rgba(0,255,0,0.3);
+}
+
+.token-component__unsubscribed {
+  background: rgba(0,0,0,0.1);
+}
