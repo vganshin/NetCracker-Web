@@ -32,6 +32,10 @@
   background: rgba(0,0,0,0.1);
 }
 
+.token-component__yellow {
+  background: yellow;
+}
+
 .login-box {
   background: #fff;
   border: 1px solid #ddd;
