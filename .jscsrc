@@ -1,0 +1,4 @@
+{
+  "preset": "airbnb",
+  "esprima": "esprima-fb"
+}

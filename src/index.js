@@ -21,29 +21,26 @@ class Root extends React.Component {
 
 ReactDOM.render(<Root />, document.getElementById('react-app'));
 
-var socket = new WebSocket("ws://localhost:8080/connect");
+var socket = new WebSocket('ws://localhost:8080/connect');
 
 socket.onopen = function() {
-    alert("Соединение установлено.");
+  alert('Соединение установлено.');
 };
 
 socket.onclose = function(event) {
-    if (event.wasClean) {
-        alert('Соединение закрыто чисто');
-    } else {
-        alert('Обрыв соединения'); // например, "убит" процесс сервера
-    }
-    alert('Код: ' + event.code + ' причина: ' + event.reason);
+  if (event.wasClean) {
+    alert('Соединение закрыто чисто');
+  } else {
+    alert('Обрыв соединения'); // например, "убит" процесс сервера
+  }
+
+  alert('Код: ' + event.code + ' причина: ' + event.reason);
 };
 
 socket.onmessage = function(event) {
-    alert(event.data);
+  alert(event.data);
 };
 
 socket.onerror = function(error) {
-    alert("Ошибка " + error.message);
+  alert('Ошибка ' + error.message);
 };
-
-window.store = store;
-import * as api from 'api'
-window.api = api;
