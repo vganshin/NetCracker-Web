@@ -6,6 +6,10 @@ import { connect } from 'react-redux';
 import { subscribe, unsubscribe, getTokens} from 'actions/subscriptions';
 import { VisibilityFilters, setVisibilityFilter, setPattern } from 'actions'
 
+import { login } from 'actions/authActions';
+
+window.login = login;
+
 window.store =  store;
 
 class Root extends React.Component {
@@ -23,7 +27,7 @@ class App extends React.Component {
   render() {
     const { dispatch, visibilityFilter } = this.props;
 
-    const email = this.props.auth.profile.email;
+    const email = 'ganshinv@gmail.com'; //this.props.auth.profile.email;
 
     return (
       <div className='wrapper'>
@@ -173,3 +177,7 @@ class Token extends React.Component {
 }
 
 ReactDOM.render(<Root />, document.getElementById('react-app'));
+
+let wow = () => ReactDOM.render(<Root />, document.getElementById('react-app'));
+
+window.wow = wow;
